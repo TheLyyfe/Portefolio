@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="./css/styles.css">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+		<script src="https://kit.fontawesome.com/f0646d89de.js" crossorigin="anonymous"></script>
+		<title>Document</title>
+	</head>
+
+	<body>
+		<header>
+			<nav class="navbar navbar-expand-lg">
+				<div class="container-fluid">
+					<a class="no" href="/projects">Home</a>
+					<button class="navbar-dark navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarNav">
+						<ul class="navbar-nav">
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page" href="#cv">CV</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#portfolio">Portfolio</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Contact</a>
+							</li>
+							<li class="nav-item">
+								{% if user %}
+								<a class="nav-link" href="/login">Ajouter un projet</a>
+								{% else %}
+								<a class="nav-link" href="/addUser">Inscription</a>
+								{% endif %}
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<main>
+			<section id="prez">
+				<article id="prez1" class="col-6">
+					<h1 id="nameprez">Je suis
+						<br>
+						<span id="name" class="red">
+							<span class="blue">&lt;</span>DEVELOPPEUR WEB<span class="blue">/&gt;</span>
+						</span>
+					</h1>
+				</article>
+				<span class="vertical-line"></span>
+				<article id="prez2" class="col-5">
+					<div class="noidea">
+						<img id="pp" src="./images/ProfilePictureMaker.png" class="rounded" alt="...">
+						<h2>
+							<span class="blue">&lt;</span><span class="red">Nicolas<span class="blue">/&gt;</span>
+							</span><br>
+							<span class="blue">&nbsp;&lt;</span><span class="red">Zogo Massy Jobin<span class="blue">/&gt;</span>
+							</span><br>
+							<span class="blue">&nbsp;&nbsp;&lt;</span><span class="red">28 ans<span class="blue">/&gt;</span>
+							</span>
+						</h2>
+					</div>
+					<div class="noidea2">
+						<p class="lh-lg">Actuellement en formation
+							<span class="green">“Concepteur Web”</span>
+							au sein de l’Ecole Ri7 à Aubagne
+							<br>
+							Je suis à la recherche d’une alternance pour ma future formation</p>
+						<div class="logos"><img src="./images/html.svg" alt="">
+							<img src="./images/css.svg" alt="">
+							<img src="./images/js.svg" alt="">
+							<img src="./images/ri7.svg" alt=""></div>
+
+					</div>
+
+				</article>
+			</section>
+			<section id="cv">
+				<div id="timeline-content">
+					<ul class="timeline">
+						<li class="event" data-date="2018 - 2019">
+							<h3>Formation
+								<span class="green">“Découverte des métiers du Numérique”</span>
+							</h3>
+							<p class="red">Sigma Formation</p>
+						</li>
+						<li class="event" data-date="2020">
+							<h3>Contrat d’Insertion
+								<span class="green">“Developpement Web”</span>
+							</h3>
+							<p class="red">Groupe Résurgence</p>
+						</li>
+						<li class="event" id="date" data-date="2020 - 2021">
+							<h3>Formation
+								<span class="green">“Développement Web et Web Mobile”</span>
+							</h3>
+							<p class="red">AFPA Saint Jérôme</p>
+						</li>
+						<li class="event" id="date" data-date="2021">
+							<h3>Stage
+								<span class="green">“Développement Web et Web Mobile”</span>
+							</h3>
+							<p class="red">AFPA Saint Jérôme</p>
+						</li>
+
+						<li class="event" data-date="2022-2023">
+
+							<h3>Formation
+								<span class="green">“Concepteur Web”</span>
+							</h3>
+
+							<p class="red">Ecole Ri7</p>
+						</li>
+					</ul>
+				</div>
+			</section>
+
+			<section id="portfolio">
+				<div class="container">
+					<div class='row'>
+						{% for project in projects %}
+							<div class="card col-md-4">
+								<img src="./uploads/{{project.img}}" class="card-img-top" alt="...">
+								<div class="card-body proj">
+									<h5 class="card-title">{{project.name}}</h5>
+									<a href="{{project.url}}">{{project.url}}</a>
+									<hr>
+									<a type="submit" class="btn btn-primary" href="updateProject/{{project.id}}">Update</a>
+									<a type="submit" class="btn btn-danger" href="deleteProject/{{project.id}}">Delete</a>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</section>
+
+			<section id="contact">
+				<article class="container ">
+				<div class="mailerror">{{mailerror}}</div>
+					<form action="/sendmail" class="contact" method="post">
+						<div class="row">
+							<div class="col-md-6 ">
+								<input name="name" type="text" placeholder="Nom" class="form-control">
+							</div>
+							<div class="col-md-6">
+								<input name="firstname" type="text" placeholder="Prénom" class="form-control">
+							</div>
+						</div>
+						<div class="col-md-12">
+							<input name="mail" type="text" placeholder="Mail" class=" form-control">
+						</div>
+						<div class="col-md-12">
+							<textarea name="message" id="" cols="100" rows="10" class="form-control"></textarea>
+						</div>
+						<button type="submit" class="btn btn-outline-secondary bouton">Envoyer</button>
+					</form>
+				</article>
+			</section>
+
+
+			<footer>
+				<a href="/login">Made by myself</a>
+			</footer>
+
+
+		</main>
+		<script src="./assets/js/main.js"></script>
+	</body>
+</html></body></html>
