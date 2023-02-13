@@ -150,6 +150,11 @@ res.redirect("/projects")
    req.session.mailerror = "Mail not sent"
    res.redirect("/projects")
 }
-}),
+})
+
+projectRouter.get('/logout', async (req, res) => {
+   req.session.destroy();
+   res.redirect('/projects')
+})
 
 module.exports = projectRouter
