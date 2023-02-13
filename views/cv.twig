@@ -131,8 +131,10 @@
 									<h5 class="card-title">{{project.name}}</h5>
 									<a href="{{project.url}}">{{project.url}}</a>
 									<hr>
+									{% if user %}
 									<a type="submit" class="btn btn-primary" href="updateProject/{{project.id}}">Update</a>
 									<a type="submit" class="btn btn-danger" href="deleteProject/{{project.id}}">Delete</a>
+									{% endif %}
 								</div>
 							</div>
 						{% endfor %}
